@@ -36,8 +36,37 @@
             <input id="keyword" type="text" class="validate" name="keyword">
             <label for="keyword">Keyword</label>
         </div>
+            <p>
+                <label>
+                    Pilih algoritma:
+                </label>
+            </p>
+            <p>
+              <label class="black-text">
+                <input class="with-gap" name="algo" value="1" type="radio" checked />
+                <span>Knuth-Morris-Pratt</span>
+              </label>
+            </p>
+            <p>
+              <label class="black-text">
+                <input class="with-gap" name="algo" value="2" type="radio" />
+                <span>Boyer-Moore</span>
+              </label>
+            </p>
+            <p>
+              <label class="black-text">
+                <input class="with-gap" name="algo" value="3" type="radio"  />
+                <span>Regex</span>
+              </label>
+            </p>
+            <p>
+                <label>
+                    Pilih file:
+                </label>
+            </p>
          <input type = "file" name = "file" />
          
+         <br><br>
          <br><br>
          <button type="submit" id="upload-button" class="btn-large waves-effect teal darken-4">
              Ekstrak!

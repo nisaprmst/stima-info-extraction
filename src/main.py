@@ -34,8 +34,9 @@ def ekstrak():
 @app.route('/hasil', methods=["GET", "POST"])
 def hasil():
    if request.method == "POST":
-      keyword = request.form
+      keyword = request.form['keyword']
       data = request.files['file']
+      algo = request.form['algo']
       # data.save(secure_filename(data.filename))
       data.save(os.path.join(uploads_dir, "test.txt"))
       filename = 'text/test.txt'
@@ -44,13 +45,14 @@ def hasil():
       print(text)
 
       data = sent_tokenize(text)
-      key = ''
-      for a, b in keyword.items():
-         key = b
-      print(key)
-      res = search_keyword_bm(data, key)
+      if algo == '1':
+         res = search_keyword_kmp(data, keyword)
+      elif algo == '2':
+         res = search_keyword_bm(data, keyword)
+      else:
+         res = search_keyword_regex(data, keyword)
 
-      extraction = extract(res, key)
+      extraction = extract(res, keyword)
       print(extraction)
       error = 'Keyword tidak ditemukan'
       if len(extraction) != 0:
