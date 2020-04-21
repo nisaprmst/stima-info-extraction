@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Info Extraction Web</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+    <nav class="teal darken-3" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/beranda">Beranda</a></li>
+            <li><a href="/perihal">Perihal</a></li>
+          </ul>
+    
+          <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+          </ul>
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Info Extraction</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Ekstraksi Informasi dari Artikel Berita dengan Algoritma Pencocokan String</h5>
+      </div>
+      <div class="row center">
+        <a href="/ekstrak" id="download-button" class="btn-large waves-effect teal darken-4">Coba Ekstrak!</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer deep-orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h6 class="white-text">Terima Kasih</h6>
+          <p class="grey-text text-lighten-4">
+            Dosen Strategi Algoritma Institut Teknologi Bandung
+          </p>
+          <p class="grey-text text-lighten-4">
+            Asisten Strategi Algoritma Institut Teknologi Bandung
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="https://www.linkedin.com/in/nisaprmst/" target="_blank">Annisa Ayu Pramesti</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+
+  </body>
+</html>
