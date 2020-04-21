@@ -1,6 +1,7 @@
 import re
 from nltk.tokenize import sent_tokenize
 from kmp_lib import search_keyword_kmp
+from boyer_moore_lib import search_keyword_bm
 
 
 def extract_date(sentence):
@@ -103,7 +104,7 @@ print(text)
 data = sent_tokenize(text)
 
 keyword = str(input("Masukkan keyword: "))
-res = search_keyword_kmp(data, keyword)
+res = search_keyword_bm(data, keyword)
 ex = extract(res, keyword)
 
 for i in range(len(ex)):
