@@ -3,7 +3,7 @@ from flask import render_template
 from flask import request, redirect
 from werkzeug.utils import secure_filename
 from lib.boyer_moore_lib import search_keyword_bm
-from lib.regex_lib import search_keyword_regex, extract
+from lib.regex_lib import search_keyword_regex, extract, search_article_date
 from lib.kmp_lib import search_keyword_kmp
 from nltk.tokenize import sent_tokenize
 import os
@@ -45,6 +45,7 @@ def hasil():
       print(text)
 
       data = sent_tokenize(text)
+      article_date = search_article_date(data)
       if algo == '1':
          res = search_keyword_kmp(data, keyword)
       elif algo == '2':
@@ -52,7 +53,7 @@ def hasil():
       else:
          res = search_keyword_regex(data, keyword)
 
-      extraction = extract(res, keyword)
+      extraction = extract(res, keyword, article_date)
       print(extraction)
       error = 'Keyword tidak ditemukan'
       if len(extraction) != 0:
@@ -64,4 +65,4 @@ def hasil():
 
 
 if __name__ == '__main__':
-   app.run(port=8080)
+   app.run(port=8080, debug=True)
