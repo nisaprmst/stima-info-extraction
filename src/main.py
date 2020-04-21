@@ -2,9 +2,9 @@ from flask import Flask
 from flask import render_template
 from flask import request, redirect
 from werkzeug.utils import secure_filename
+from lib.boyer_moore_lib import search_keyword_bm
 from lib.regex_lib import search_keyword_regex, extract
 from lib.kmp_lib import search_keyword_kmp
-from lib.boyer_moore_lib import search_keyword_bm
 from nltk.tokenize import sent_tokenize
 import os
 
@@ -64,4 +64,4 @@ def hasil():
 
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(port=8080)
