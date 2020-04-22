@@ -13,8 +13,11 @@ def search_keyword_bm(data, keyword):
         i = 0
         while(i <= sen_length - key_length):
             j = key_length - 1
+            # decrement j buat nentuin sama sampe mana
+            # kalau paling belakang beda brrti jump sepanjang j
             while j >= 0 and sentence[i+j].lower() == keyword[j].lower():
                 j -= 1
+            # kalau j = -1 berarti match
             if j == -1:
                 ret.append(sentence)
                 if i + key_length < sen_length:
