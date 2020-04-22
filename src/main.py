@@ -42,7 +42,6 @@ def hasil():
       filename = 'text/test.txt'
       file = open(filename, "r")
       text = file.read()
-      print(text)
 
       data = sent_tokenize(text)
       article_date = search_article_date(data)
@@ -54,7 +53,6 @@ def hasil():
          res = search_keyword_regex(data, keyword)
 
       extraction = extract(res, keyword, article_date)
-      print(extraction)
       error = 'Keyword tidak ditemukan'
       if len(extraction) != 0:
          error = ''

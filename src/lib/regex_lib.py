@@ -66,16 +66,19 @@ def extract(data, keyword, article_date):
             dt = extract_date(sentence)
             if dt is not None:
                 date = dt
-            before = '(?i)' + keyword + '(?:\D{0,100})[^.,] (\d{1,3}(\.\d{3}])*)'
-            after = '(?i)(\d{1,3}(\.\d{3}])*)[^.,] (?:\D{0,100})' + keyword
+            before = '(?i)' + keyword + '(?:\D{0,100})[^.,](\d{1,3}(.\d{3})*)'
+            after = '(?i)(\d{1,3}(\.\d{3})*)[^.,] (?:\D{0,100})' + keyword
             b = re.search(before, sentence, re.IGNORECASE)
             a = re.search(after, sentence, re.IGNORECASE)
             bef = keyword
             af = keyword
             if b is not None:
                 bef = b.group()
+                print(bef)
             if a is not None:
                 af = a.group()
+                print(af)
+            print(bef, af)
             if bef != keyword:
                 c = bef
                 if af != keyword and len(af) < len(bef):
@@ -84,11 +87,12 @@ def extract(data, keyword, article_date):
                 if af != keyword:
                     c = af
             if c != 'none':
-                cregex = re.search('(\d{1,3}(\.\d{3}])*)', c)
+                cregex = re.search('(\d{1,3}(\.\d{3})*)', c)
+                print(c)
                 number = cregex.group()
-
             res.append([date, number])
-    # print(article_date)
+    if date == 'tidak ditemukan tanggal':
+        date = article_date
     return res
 
 # print(extract_date(" 22 April lalal"))
