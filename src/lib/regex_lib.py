@@ -12,7 +12,9 @@ def extract_date(sentence):
     d = '(0?[1-9]|[12][0-9]|3[01])* (Jan|Feb|Mar|Apr|Mei|Jun|Jul|Aug|Sep|Okt|Nov|Des) (\d{4}|\d{2})*'
     e = '(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember|Jan|Feb|Mar|Apr|Mei|Jun|Jul|Aug|Sep|Okt|Nov|Des)(,( )*)*([12][0-9]|3[01]|0?[1-9])'
     f = '(0?[1-9]|[12][0-9]|3[01]) (Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember|Jan|Feb|Mar|Apr|Mei|Jun|Jul|Aug|Sep|Okt|Nov|Des)'
-    date = a + '|' + b + '|' + c + '|' + d + '|' + e + '|' + f
+    g = '((0?[1-9]|1[012])[-/]([12][0-9]|3[01]|0?[1-9]))'
+    h = '((0?[1-9]|[12][0-9]|3[01])[-/](0?[1-9]|1[012]))'
+    date = a + '|' + b + '|' + c + '|' + d + '|' + e + '|' + f + '|' + g + '|' + h
     date = re.search(date, sentence, re.IGNORECASE)
     waktu = re.search('(\d{2}:\d{2})|(\d{2}.\d{2}) (WIB|WITA|WIT)?', sentence, re.IGNORECASE)
     if day is not None:
@@ -55,9 +57,9 @@ def search_article_date(data):
 
 def extract(data, keyword, article_date):
     date = article_date
-    number = 'tidak ditemukan angka'
     res = []
     for i in range(len(data)):
+        number = 'tidak ditemukan angka'
         sentence = data[i]
         match = re.search(keyword, sentence, re.IGNORECASE)
         if match is not None:
@@ -66,8 +68,8 @@ def extract(data, keyword, article_date):
             dt = extract_date(sentence)
             if dt is not None:
                 date = dt
-            before = '(?i)' + keyword + '(?:\D{0,100})[^.,](\d{1,3}(.\d{3})*)'
-            after = '(?i)(\d{1,3}(\.\d{3})*)[^.,] (?:\D{0,100})' + keyword
+            before = '(?i)' + keyword + '(?:\D{0,100})[^.,](\d{1,3}(.\d{3})*(,\d)?)'
+            after = '(?i)(\d{1,3}(\.\d{3})*(,\d)?)[^.,] (?:\D{0,100})' + keyword
             b = re.search(before, sentence, re.IGNORECASE)
             a = re.search(after, sentence, re.IGNORECASE)
             bef = keyword
@@ -87,7 +89,7 @@ def extract(data, keyword, article_date):
                 if af != keyword:
                     c = af
             if c != 'none':
-                cregex = re.search('(\d{1,3}(\.\d{3})*)', c)
+                cregex = re.search('(\d{1,3}(\.\d{3})*(,\d)?)', c)
                 print(c)
                 number = cregex.group()
             res.append([date, number])
